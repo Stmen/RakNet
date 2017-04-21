@@ -26,7 +26,7 @@ static const CCTimeType SYN=10000;
 #include <stdlib.h>
 #include "RakAssert.h"
 #include "RakAlloca.h"
-
+#include <cmath>
 using namespace RakNet;
 
 // ****************************************************** PUBLIC METHODS ******************************************************
@@ -218,7 +218,7 @@ void CCRakNetSlidingWindow::OnAck(CCTimeType curTime, CCTimeType rtt, bool hasBA
 		double d = .05;
 		double difference = rtt - estimatedRTT;
 		estimatedRTT = estimatedRTT + d * difference;
-		deviationRtt = deviationRtt + d * (abs(difference) - deviationRtt);
+		deviationRtt = deviationRtt + d * (std::abs(difference) - deviationRtt);
 	}
 
 	_isContinuousSend=isContinuousSend;
